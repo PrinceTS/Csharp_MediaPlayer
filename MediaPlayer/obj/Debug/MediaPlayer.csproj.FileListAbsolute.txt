@@ -1,0 +1,15 @@
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe.config
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.exe
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\bin\Debug\MediaPlayer.pdb
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csprojAssemblyReference.cache
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MainWindow.g.cs
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\App.g.cs
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer_MarkupCompile.cache
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer_MarkupCompile.lref
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MainWindow.baml
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.g.resources
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.Properties.Resources.resources
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.GenerateResource.cache
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.csproj.CoreCompileInputs.cache
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.exe
+D:\Disk Third\Programming\VS\MediaPlayer\MediaPlayer\obj\Debug\MediaPlayer.pdb
