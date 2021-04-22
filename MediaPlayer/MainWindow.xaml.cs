@@ -15,12 +15,10 @@ namespace MediaPlayer
     {
         public int pp = 0;
         public string listfilename;
+        public bool fullscreen = false;
 
         public List<string> Medias = new List<string>();
-
-
         private bool userIsDraggingTime = false;
-
 
         private bool isPlaying = false;
 
@@ -113,17 +111,7 @@ namespace MediaPlayer
                 Console.WriteLine(error.Message);
             }
         }
-        /*
- 0-50 zöld
-50-90 sárga
-90-100 zöld 
-hang
-irja ki mennyi a hang
-forward button
-back button
-loop button
-keverés button
- */
+
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -163,7 +151,7 @@ keverés button
             }
             catch (Exception error)
             {
-                Console.WriteLine(error.Message);
+                MessageBox.Show(error.Message);
             }
         }
         private void MediaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -178,19 +166,6 @@ keverés button
             MediaPlayer.Source = new Uri(listfilename);
             MediaPlayer.Play();
             isPlaying = true;
-
-
-        }
-        private void MediaList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            /*
-             * 
-             * ?????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-            foreach (var item in Medias)
-            {
-                Console.WriteLine(item);
-            }
-            */
         }
         //TIMELINE
         private void TimeLine_DragStarted(object sender, DragStartedEventArgs e)
@@ -209,6 +184,7 @@ keverés button
         private void VoiceLine_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             MediaPlayer.Volume = (double)VoiceLine.Value;
+            
         }
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
@@ -245,10 +221,15 @@ keverés button
                 Medias.Remove(listfilename);
                 InsertListItemsToListBox();
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Nincs mit kitörölni a listából.");
+            }
             catch (Exception error)
             {
-                Console.WriteLine(error.Message);
+                MessageBox.Show(error.Message);
             }
+
         }
         private void OpenListButton_Click(object sender, RoutedEventArgs e)
         {
@@ -268,7 +249,6 @@ keverés button
                         else
                         {
                             //Minden sort hozzá adunk a listához
-                            Console.WriteLine(line);
                             Medias.Add(line);
                         }
                     }
@@ -278,8 +258,7 @@ keverés button
             }
             catch (Exception error)
             {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(error.Message);
+                MessageBox.Show(error.Message);
             }
         }
         private void SaveListButton_Click(object sender, RoutedEventArgs e)
@@ -292,15 +271,15 @@ keverés button
                     //Végig olvassuk a Medias listát és kiírjuk egy fájlba
                     foreach (var item in Medias)
                     {
-                        Console.WriteLine(item);
                         sw.WriteLine(item);
                     }
                 }
+                MessageBox.Show("Lista elmentve.");
             }
             catch (Exception error)
             {
                 Console.WriteLine("The file could not be read:");
-                Console.WriteLine(error.Message);
+                MessageBox.Show(error.Message);
             }
         }
         private void InsertListItemsToListBox()
@@ -313,7 +292,24 @@ keverés button
                 MediaList.Items.Add(Path.GetFileName(item));
             }
         }
+
+        private void MediaPlayer_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            if (e.ClickCount == 2 && fullscreen == false)
+            {
+                this.Content = MediaPlayer;
+                this.WindowStyle = WindowStyle.None;
+                this.WindowState = WindowState.Maximized;
+                MessageBox.Show(e.ClickCount.ToString());
+            }
+            else if (e.ClickCount == 2 && fullscreen == true)
+            {
+
+                this.WindowStyle = WindowStyle.SingleBorderWindow;
+                this.WindowState = WindowState.Normal;
+            }
+            fullscreen = !fullscreen;
+        }
     }
 }
-
-
