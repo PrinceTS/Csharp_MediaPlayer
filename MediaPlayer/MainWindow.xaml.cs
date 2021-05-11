@@ -32,18 +32,22 @@ namespace MediaPlayer
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+            
         }
         void timer_Tick(object sender, EventArgs e)
         {
-            if (MediaPlayer.Source != null && (MediaPlayer.NaturalDuration.HasTimeSpan) && (!userIsDraggingTime))
+            if (MediaPlayer.Source != null)
             {
-                TimeLine.Minimum = 0;
-                TimeLine.Maximum = MediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
-                TimeLine.Value = MediaPlayer.Position.TotalSeconds;
-                Title.Content = Path.GetFileName(MediaPlayer.Source.ToString());
+                if (MediaPlayer.Position == TimeSpan.FromSeconds(TimeLine.Maximum)) AutoPlay();
+                if (MediaPlayer.NaturalDuration.HasTimeSpan && !userIsDraggingTime)
+                {
+                    TimeLine.Minimum = 0;
+                    TimeLine.Maximum = MediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+                    TimeLine.Value = MediaPlayer.Position.TotalSeconds;
+                    Title.Content = Path.GetFileName(MediaPlayer.Source.ToString());
+                }
+                else Title.Content = "No file selected...";
             }
-            else
-                Title.Content = "No file selected...";
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -114,45 +118,7 @@ namespace MediaPlayer
 
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                //Megtalálja a listában majd pedig az előtte álló indexszel elindítja ha nincs akkor pedig a legnagyobbat tehát a sor végére megy
-                int index = 0;
-                //Amennyiben nincs elindítva semmi akkor le sem fut (Mediaplayer?)
-                if (!(MediaPlayer.Source == null))
-                {
-                    //Végig olvassa a listát, hogy hol lehet a fájl ami éppen fut
-                    foreach (var item in Medias)
-                    {
-                        //Lista fájl neve
-                        string[] asd1 = item.Split('\\');
-                        //Éppen futó fájl neve
-                        string[] asd2 = MediaPlayer.Source.ToString().Split('/');
-                        //Megtalálja az eggyezést
-                        if (asd1[asd1.Length - 1] == asd2[asd2.Length - 1])
-                        {
-                            //ha megvan akkor elmenti az indexet és kilép a ciklusból
-                            index = Medias.IndexOf(item);
-                            break;
-                        }
-                    }
-                    Console.WriteLine(index + 1 > Medias.Count - 1);
-                    if (index + 1 > Medias.Count - 1)
-                    {
-                        Console.WriteLine(Medias[0]);
-                        MediaPlayer.Source = new Uri(Medias[0]);
-                    }
-                    else
-                    {
-                        Console.WriteLine(Medias[index + 1]);
-                        MediaPlayer.Source = new Uri(Medias[index + 1]);
-                    }
-                }
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message);
-            }
+            AutoPlay(); 
         }
         private void MediaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -310,6 +276,49 @@ namespace MediaPlayer
                 this.WindowState = WindowState.Normal;
             }
             fullscreen = !fullscreen;
+        }
+
+        private void AutoPlay()
+        {
+            try
+            {
+                //Megtalálja a listában majd pedig az előtte álló indexszel elindítja ha nincs akkor pedig a legnagyobbat tehát a sor végére megy
+                int index = 0;
+                //Amennyiben nincs elindítva semmi akkor le sem fut (Mediaplayer?)
+                if (!(MediaPlayer.Source == null))
+                {
+                    //Végig olvassa a listát, hogy hol lehet a fájl ami éppen fut
+                    foreach (var item in Medias)
+                    {
+                        //Lista fájl neve
+                        string[] asd1 = item.Split('\\');
+                        //Éppen futó fájl neve
+                        string[] asd2 = MediaPlayer.Source.ToString().Split('/');
+                        //Megtalálja az eggyezést
+                        if (asd1[asd1.Length - 1] == asd2[asd2.Length - 1])
+                        {
+                            //ha megvan akkor elmenti az indexet és kilép a ciklusból
+                            index = Medias.IndexOf(item);
+                            break;
+                        }
+                    }
+                    Console.WriteLine(index + 1 > Medias.Count - 1);
+                    if (index + 1 > Medias.Count - 1)
+                    {
+                        Console.WriteLine(Medias[0]);
+                        MediaPlayer.Source = new Uri(Medias[0]);
+                    }
+                    else
+                    {
+                        Console.WriteLine(Medias[index + 1]);
+                        MediaPlayer.Source = new Uri(Medias[index + 1]);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
     }
 }
