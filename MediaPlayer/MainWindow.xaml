@@ -43,7 +43,7 @@
         <!-- Media Player -->
         <MediaElement x:Name="MediaPlayer" LoadedBehavior="Manual" Grid.Row="1" Grid.RowSpan="7" Grid.Column="1" Grid.ColumnSpan="5" MouseDown="MediaPlayer_MouseDown"/>
         <!-- Lista -->
-        <ListBox x:Name="MediaList" Grid.Row="1" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="3" MouseLeftButtonUp="MediaList_MouseDoubleClick"/>
+        <ListBox x:Name="MediaList" Grid.Row="1" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="3" MouseDoubleClick="MediaList_MouseDoubleClick"/>
         <!-- Gomb -->
         <Button x:Name="OpenButton" Grid.Row="8" Grid.Column="7" Grid.ColumnSpan="1" Content="Beillesztés" Click="OpenButton_Click"/>
         <Button x:Name="OpenListButton" Grid.Row="6" Grid.Column="7" Grid.ColumnSpan="1" Content="Lista Betöltése" Click="OpenListButton_Click"/>

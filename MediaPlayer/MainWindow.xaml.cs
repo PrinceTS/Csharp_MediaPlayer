@@ -261,21 +261,20 @@ namespace MediaPlayer
 
         private void MediaPlayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
-            if (e.ClickCount == 2 && fullscreen == false)
-            {
-                this.Content = MediaPlayer;
-                this.WindowStyle = WindowStyle.None;
-                this.WindowState = WindowState.Maximized;
-                MessageBox.Show(e.ClickCount.ToString());
-            }
-            else if (e.ClickCount == 2 && fullscreen == true)
-            {
+            //if (e.ClickCount == 2 && fullscreen == false)
+            //{
+            //    this.Content = MediaPlayer;
+            //    this.WindowStyle = WindowStyle.None;
+            //    this.WindowState = WindowState.Maximized;
+            //    MessageBox.Show(e.ClickCount.ToString());
+            //}
+            //else if (e.ClickCount == 2 && fullscreen == true)
+            //{
 
-                this.WindowStyle = WindowStyle.SingleBorderWindow;
-                this.WindowState = WindowState.Normal;
-            }
-            fullscreen = !fullscreen;
+            //    this.WindowStyle = WindowStyle.SingleBorderWindow;
+            //    this.WindowState = WindowState.Normal;
+            //}
+            //fullscreen = !fullscreen;
         }
 
         private void AutoPlay()
