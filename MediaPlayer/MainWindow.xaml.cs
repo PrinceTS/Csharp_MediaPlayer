@@ -10,10 +10,8 @@ using System.Windows.Controls.Primitives;
 
 namespace MediaPlayer
 {
-
     public partial class MainWindow : Window
     {
-        public int pp = 0;
         public string listfilename;
         public bool fullscreen = false;
 
@@ -27,11 +25,18 @@ namespace MediaPlayer
         public object SelectedItem { get; set; }
         public MainWindow()
         {
-            InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            try
+            {
+                InitializeComponent();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += timer_Tick;
+                timer.Start();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             
         }
         void timer_Tick(object sender, EventArgs e)
